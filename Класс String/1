@@ -1,0 +1,64 @@
+Практика #1
+Напишите программу, в которой будет продемонстрирована функциональность десяти любых методов класса String. В комментариях к программе напишите пояснение к используемым методам.
+
+public class StringMethodsDemo {
+    public static void main(String[] args) {
+        String text = "Hello, Java World!";
+
+        // 1. length() - возвращает длину строки
+        int length = text.length();
+        System.out.println("Длина строки: " + length);
+
+        // 2. toUpperCase() - преобразует строку в верхний регистр
+        String upper = text.toUpperCase();
+        System.out.println("В верхнем регистре: " + upper);
+
+        // 3. toLowerCase() - преобразует строку в нижний регистр
+        String lower = text.toLowerCase();
+        System.out.println("В нижнем регистре: " + lower);
+
+        // 4. substring(int beginIndex, int endIndex) - извлекает подстроку
+        String sub = text.substring(7, 11);
+        System.out.println("Подстрока с 7 по 11 символ: " + sub);
+
+        // 5. contains(CharSequence s) - проверяет, содержит ли строка указанную последовательность
+        boolean containsJava = text.contains("Java");
+        System.out.println("Содержит 'Java': " + containsJava);
+
+        // 6. replace(CharSequence target, CharSequence replacement) - заменяет часть строки
+        String replaced = text.replace("World", "Java");
+        System.out.println("После замены: " + replaced);
+
+        // 7. trim() - удаляет начальные и конечные пробелы
+        String spaced = "   Trim me!   ";
+        String trimmed = spaced.trim();
+        System.out.println("После trim(): '" + trimmed + "'");
+
+        // 8. charAt(int index) - возвращает символ по индексу
+        char fifthChar = text.charAt(4);
+        System.out.println("Пятый символ: " + fifthChar);
+
+        // 9. indexOf(String str) - возвращает индекс первого вхождения подстроки
+        int index = text.indexOf("Java");
+        System.out.println("Индекс 'Java': " + index);
+
+        // 10. split(String regex) - разбивает строку на массив по разделителю
+        String[] words = text.split(" ");
+        System.out.println("Слова в строке:");
+        for (String word : words) {
+            System.out.println(word);
+        }
+    }
+}
+
+Пояснения к методам:
+1. `length()` - возвращает количество символов в строке.
+2. `toUpperCase()` - преобразует все символы строки в верхний регистр.
+3. `toLowerCase()` - преобразует все символы строки в нижний регистр.
+4. `substring(int beginIndex, int endIndex)` - извлекает подстроку начиная с `beginIndex` и до `endIndex` (не включая).
+5. `contains(CharSequence s)` - проверяет, содержит ли строка указанную последовательность символов.
+6. `replace(CharSequence target, CharSequence replacement)` - заменяет все вхождения `target` на `replacement`.
+7. `trim()` - удаляет пробелы в начале и конце строки.
+8. `charAt(int index)` - возвращает символ, расположенный по указанному индексу.
+9. `indexOf(String str)` - возвращает индекс первого вхождения заданной подстроки или -1, если не найдено.
+10. `split(String regex)` - разделяет строку на массив подстрок по заданному регулярному выражению.
