@@ -1,0 +1,49 @@
+Практика #2
+
+Преобразование объектов между классами `String`, `StringBuilder` и `StringBuffer` осуществляется с помощью следующих методов:
+
+1. Преобразование `String` в `StringBuilder` или `StringBuffer`:
+   - StringBuilder sb = new StringBuilder(string);
+   - StringBuffer sbf = new StringBuffer(string);
+
+   Пример:
+   String str = "Example";
+   StringBuilder sb = new StringBuilder(str);
+   StringBuffer sbf = new StringBuffer(str);
+
+
+2. Преобразование `StringBuilder` или `StringBuffer` в `String`:
+   - **String str = stringBuilder.toString();**
+   - **String str = stringBuffer.toString();**
+
+   Пример:
+   StringBuilder sb = new StringBuilder("Example");
+   String strFromSb = sb.toString();
+
+   StringBuffer sbf = new StringBuffer("Example");
+   String strFromSbf = sbf.toString();
+
+3. Преобразование `StringBuilder` в `StringBuffer` и наоборот:
+   
+   Прямого метода преобразования нет, но можно использовать промежуточное преобразование через `String`.
+
+   Пример:
+   // StringBuilder -> String -> StringBuffer
+   StringBuilder sb = new StringBuilder("Example");
+   String str = sb.toString();
+   StringBuffer sbf = new StringBuffer(str);
+
+   // StringBuffer -> String -> StringBuilder
+   StringBuffer sbf2 = new StringBuffer("Example");
+   String str2 = sbf2.toString();
+   StringBuilder sb2 = new StringBuilder(str2);
+   
+Итоговые методы для преобразования:
+
+- Конструкторы классов:
+  - `StringBuilder(String str)`
+  - `StringBuffer(String str)`
+- Метод `toString()`:
+  - Преобразует `StringBuilder` или `StringBuffer` в `String`.
+
+Таким образом, для преобразования между `String`, `StringBuilder` и `StringBuffer` наиболее часто используются конструкторы соответствующих классов и метод `toString()`.
