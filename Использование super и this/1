@@ -1,0 +1,100 @@
+ Практика #1: Использование ключевого слова `super`
+
+Ключевое слово `super` в Java имеет три основных применения:
+
+1. Вызов конструктора суперкласса.
+2. Доступ к методам суперкласса.
+3. Доступ к полям суперкласса.
+
+Ниже приведен пример кода, демонстрирующий все три варианта использования `super`.
+
+// Суперкласс Parent
+class Parent {
+    int a = 10;
+
+    public Parent() {
+        System.out.println("Конструктор Parent");
+    }
+
+    public Parent(int a) {
+        this.a = a;
+        System.out.println("Конструктор Parent с параметром a = " + a);
+    }
+
+    void show() {
+        System.out.println("Метод show() в Parent");
+    }
+}
+
+// Подкласс Child
+class Child extends Parent {
+    int a = 20;
+
+    public Child() {
+        super(); // Вызов конструктора суперкласса без параметров
+        System.out.println("Конструктор Child");
+    }
+
+    public Child(int a) {
+        super(a); // Вызов конструктора суперкласса с параметром
+        System.out.println("Конструктор Child с параметром a = " + a);
+    }
+
+    @Override
+    void show() {
+        super.show(); // Вызов метода суперкласса
+        System.out.println("Метод show() в Child");
+    }
+
+    void display() {
+        System.out.println("Поле a в Child: " + this.a);      // Доступ к полю подкласса
+        System.out.println("Поле a в Parent: " + super.a);    // Доступ к полю суперкласса
+    }
+}
+
+// Класс Main для демонстрации
+public class Main {
+    public static void main(String[] args) {
+        // Вызов конструктора без параметров
+        Child child1 = new Child();
+        child1.show();
+        child1.display();
+
+        System.out.println("-----");
+
+        // Вызов конструктора с параметром
+        Child child2 = new Child(30);
+        child2.show();
+        child2.display();
+    }
+}
+
+Вывод программы:
+Конструктор Parent
+Конструктор Child
+Метод show() в Parent
+Метод show() в Child
+Поле a в Child: 20
+Поле a в Parent: 10
+-----
+Конструктор Parent с параметром a = 30
+Конструктор Child с параметром a = 30
+Метод show() в Parent
+Метод show() в Child
+Поле a в Child: 20
+Поле a в Parent: 30
+```
+
+Пояснения:
+
+1. Вызов конструктора суперкласса (`super()`):
+   - В конструкторе `Child()` вызывается `super()`, что приводит к выполнению конструктора `Parent()` без параметров.
+   - В конструкторе `Child(int a)` вызывается `super(a)`, что вызывает конструктор `Parent(int a)` с передачей параметра.
+
+2. Вызов метода суперкласса (`super.show()`):
+   - В методе `show()` класса `Child` сначала вызывается метод `show()` суперкласса `Parent`, а затем добавляется дополнительная функциональность.
+
+3. Доступ к полям суперкласса (`super.a`):
+   - В методе `display()` класса `Child` демонстрируется доступ к полям:
+     - `this.a` обращается к полю `a` текущего объекта класса `Child`.
+     - `super.a` обращается к полю `a` суперкласса `Parent`.
