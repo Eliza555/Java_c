@@ -1,0 +1,117 @@
+Пример 1: Класс MathUtils с методом sum
+
+В этом примере класс MathUtils содержит перегруженные методы sum, которые позволяют суммировать числа различным образом:
+
+public class MathUtils {
+
+    // Суммирует два числа
+    public int sum(int a, int b) {
+        return a + b;
+    }
+
+    // Суммирует три числа
+    public int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // Суммирует произвольное количество чисел
+    public int sum(int... numbers) {
+        int total = 0;
+        for (int num : numbers) {
+            total += num;
+        }
+        return total;
+    }
+
+    // Перегрузка с плавающей точкой
+    public double sum(double... numbers) {
+        double total = 0.0;
+        for (double num : numbers) {
+            total += num;
+        }
+        return total;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        MathUtils math = new MathUtils();
+
+        // Вызов метода с двумя аргументами
+        int result1 = math.sum(10, 20);
+        System.out.println("Сумма двух чисел: " + result1); // Вывод: 30
+
+        // Вызов метода с тремя аргументами
+        int result2 = math.sum(10, 20, 30);
+        System.out.println("Сумма трех чисел: " + result2); // Вывод: 60
+
+        // Вызов метода с переменным числом аргументов
+        int result3 = math.sum(1, 2, 3, 4, 5);
+        System.out.println("Сумма пяти чисел: " + result3); // Вывод: 15
+
+        // Вызов метода с плавающими числами
+        double result4 = math.sum(1.5, 2.5, 3.0);
+        System.out.println("Сумма дробных чисел: " + result4); // Вывод: 7.0
+    }
+}
+
+Пример 2: Класс Printer с методом print
+
+Этот класс демонстрирует перегрузку метода print для различных типов и количества аргументов:
+public class Printer {
+
+    // Печатает одно сообщение
+    public void print(String message) {
+        System.out.println("Message: " + message);
+    }
+
+    // Печатает два сообщения
+    public void print(String message1, String message2) {
+        System.out.println("Messages: " + message1 + ", " + message2);
+    }
+
+    // Печатает произвольное количество сообщений
+    public void print(String... messages) {
+        System.out.print("All Messages: ");
+        for (int i = 0; i < messages.length; i++) {
+            System.out.print(messages[i]);
+            if (i < messages.length - 1) {
+                System.out.print("; ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Перегрузка для числовых сообщений
+    public void print(int... numbers) {
+        System.out.print("Numbers: ");
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.print(numbers[i]);
+            if (i < numbers.length - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println();
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Printer printer = new Printer();
+
+        // Печать одного сообщения
+        printer.print("Hello, World!"); 
+        // Вывод: Message: Hello, World!
+
+        // Печать двух сообщений
+        printer.print("Hello", "Java!"); 
+        // Вывод: Messages: Hello, Java!
+
+        // Печать нескольких сообщений
+        printer.print("Hello", "Java", "Overloading", "Methods"); 
+        // Вывод: All Messages: Hello; Java; Overloading; Methods
+
+        // Печать чисел
+        printer.print(10, 20, 30, 40); 
+        // Вывод: Numbers: 10, 20, 30, 40
+    }
+}
+
