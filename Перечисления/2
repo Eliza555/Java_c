@@ -1,0 +1,57 @@
+
+Пример реализации собственного перечисления с дополнительным методом:
+
+В этом примере мы создадим перечисление Day, которое включает метод для проверки, является ли день выходным.
+
+// Перечисление Day с дополнительным методом isWeekend
+enum Day {
+    MONDAY(false),
+    TUESDAY(false),
+    WEDNESDAY(false),
+    THURSDAY(false),
+    FRIDAY(false),
+    SATURDAY(true),
+    SUNDAY(true);
+
+    private boolean isWeekend;
+
+    // Конструктор перечисления
+    Day(boolean isWeekend) {
+        this.isWeekend = isWeekend;
+    }
+
+    // Дополнительный метод для проверки выходного дня
+    public boolean isWeekend() {
+        return this.isWeekend;
+    }
+}
+
+// Класс для демонстрации использования перечисления Day
+public class EnumExample {
+    public static void main(String[] args) {
+        Day today = Day.SATURDAY;
+        Day tomorrow = Day.MONDAY;
+
+        System.out.println("Сегодня: " + today);
+        System.out.println("Выходной ли сегодня? " + today.isWeekend());
+
+        System.out.println("Завтра: " + tomorrow);
+        System.out.println("Выходной ли завтра? " + tomorrow.isWeekend());
+    }
+}
+
+
+Вывод программы:
+
+Сегодня: SATURDAY
+Выходной ли сегодня? true
+Завтра: MONDAY
+Выходной ли завтра? false
+
+
+Объяснение:
+
+- Перечисление Day содержит дни недели с дополнительным свойством isWeekend, которое указывает, является ли день выходным.
+- Конструктор Day(boolean isWeekend) инициализирует это свойство для каждого элемента перечисления.
+- Метод isWeekend() возвращает значение свойства isWeekend, позволяя проверить, является ли конкретный день выходным.
+- Класс EnumExample демонстрирует использование перечисления Day и вызов дополнительного метода isWeekend() для проверки дней.
