@@ -1,0 +1,40 @@
+
+Примеры бесконечных циклов для конструкций while и do-while.
+
+1. Бесконечный цикл с использованием while:
+
+public class InfiniteWhileLoop {
+    public static void main(String[] args) {
+        while (true) {
+            // Тело бесконечного цикла
+            // Например, ожидание события или постоянное выполнение задачи
+            System.out.println("Бесконечный цикл while выполняется...");
+            
+            // Чтобы избежать слишком быстрого вывода, можно добавить паузу
+            try {
+                Thread.sleep(1000); // Пауза 1 секунда
+            } catch (InterruptedException e) {
+                // Обработка исключения
+                e.printStackTrace();
+            }
+        }
+    }
+}
+2. Бесконечный цикл с использованием do-while:
+public class InfiniteDoWhileLoop {
+    public static void main(String[] args) {
+        do {
+            // Тело бесконечного цикла
+            // Например, постоянный ввод данных или выполнение задачи
+            System.out.println("Бесконечный цикл do-while выполняется...");
+            
+            // Чтобы избежать слишком быстрого вывода, можно добавить паузу
+            try {
+                Thread.sleep(1000); // Пауза 1 секунда
+            } catch (InterruptedException e) {
+                // Обработка исключения
+                e.printStackTrace();
+            }
+        } while (true);
+    }
+}
