@@ -1,0 +1,36 @@
+Примеры использования оператора `instanceof`
+
+Оператор `instanceof` используется для проверки, является ли объект экземпляром определенного класса или его подкласса. Он также возвращает `false`, если объект равен `null`.
+
+class Animal {}
+class Dog extends Animal {}
+class Cat extends Animal {}
+
+public class InstanceofExample {
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        Dog dog = new Dog();
+        Cat cat = new Cat();
+        Animal nullAnimal = null;
+
+        // Проверка экземпляров
+        System.out.println("animal instanceof Animal: " + (animal instanceof Animal)); // true
+        System.out.println("dog instanceof Animal: " + (dog instanceof Animal));       // true
+        System.out.println("cat instanceof Dog: " + (cat instanceof Dog));             // false
+        System.out.println("dog instanceof Dog: " + (dog instanceof Dog));             // true
+        System.out.println("animal instanceof Dog: " + (animal instanceof Dog));       // false
+
+        // Проверка с null
+        System.out.println("nullAnimal instanceof Animal: " + (nullAnimal instanceof Animal)); // false
+        System.out.println("nullAnimal instanceof Object: " + (nullAnimal instanceof Object)); // false
+
+        // Пример использования с условием
+        Object obj = "Строка";
+        if (obj instanceof String) {
+            String str = (String) obj;
+            System.out.println("Длина строки: " + str.length());
+        } else {
+            System.out.println("Объект не является строкой.");
+        }
+    }
+}
