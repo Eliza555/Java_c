@@ -1,0 +1,51 @@
+Практика #2
+Приведите примеры использования класса StringJoiner.
+
+Класс `StringJoiner` используется для создания строк, которые состоят из отдельных элементов, объединённых определённым разделителем, префиксом и суффиксом. Это удобно для построения строк из коллекций или массивов.
+
+Пример 1: Объединение имен через запятую
+
+import java.util.StringJoiner;
+
+public class StringJoinerExample {
+    public static void main(String[] args) {
+        StringJoiner joiner = new StringJoiner(", ");
+        joiner.add("Alice");
+        joiner.add("Bob");
+        joiner.add("Charlie");
+        String result = joiner.toString();
+        System.out.println("Имена: " + result); // Вывод: Имена: Alice, Bob, Charlie
+    }
+}
+
+Пример 2: Форматирование списка чисел с префиксом и суффиксом
+
+import java.util.StringJoiner;
+
+public cla
+ss StringJoinerWithPrefixSuffix {
+    public static void main(String[] args) {
+        StringJoiner joiner = new StringJoiner(" | ", "[", "]");
+        joiner.add("10");
+        joiner.add("20");
+        joiner.add("30");
+        String result = joiner.toString();
+        System.out.println("Список чисел: " + result); // Вывод: Список чисел: [10 | 20 | 30]
+    }
+}
+
+Пример 3: Создание URL-пути из сегментов
+
+import java.util.StringJoiner;
+
+public class URLBuilder {
+    public static void main(String[] args) {
+        StringJoiner joiner = new StringJoiner("/", "https://example.com/", "");
+        joiner.add("users");
+        joiner.add("john");
+        joiner.add("profile");
+        String url = joiner.toString();
+        System.out.println("URL: " + url); // Вывод: URL: https://example.com/users/john/profile
+    }
+}
+- В третьем примере создаётся URL, объединяя сегменты пути с разделителем `/, используя префикс для базового URL.
