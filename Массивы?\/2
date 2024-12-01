@@ -1,0 +1,101 @@
+Использование класса java.util.Arrays:
+
+Класс java.util.Arrays предоставляет множество полезных методов для работы с массивами. Рассмотрим примеры использования указанных методов.
+
+1. toString(...)
+
+   Описание: Преобразует массив в строковое представление.
+
+   Пример:
+   
+   import java.util.Arrays;
+
+   public class ToStringExample {
+       public static void main(String[] args) {
+           int[] numbers = {1, 2, 3, 4, 5};
+           String arrayAsString = Arrays.toString(numbers);
+           System.out.println(arrayAsString); // Вывод: [1, 2, 3, 4, 5]
+       }
+   }
+   
+2. binarySearch(...)
+
+   Описание: Выполняет двоичный поиск элемента в отсортированном массиве.
+
+   Пример:
+   
+   import java.util.Arrays;
+
+   public class BinarySearchExample {
+       public static void main(String[] args) {
+           int[] numbers = {1, 3, 5, 7, 9};
+           int key = 5;
+           int index = Arrays.binarySearch(numbers, key);
+           System.out.println("Индекс элемента " + key + ": " + index); // Вывод: Индекс элемента 5: 2
+       }
+   }
+   
+   Важно: Массив должен быть предварительно отсортирован для корректного результата.
+
+3. equals(...)
+
+   Описание: Сравнивает два массива на равенство по содержимому.
+
+   Пример:
+
+   import java.util.Arrays;
+
+   public class EqualsExample {
+       public static void main(String[] args) {
+           int[] array1 = {1, 2, 3};
+           int[] array2 = {1, 2, 3};
+           int[] array3 = {4, 5, 6};
+
+           boolean isEqual1 = Arrays.equals(array1, array2);
+           boolean isEqual2 = Arrays.equals(array1, array3);
+
+           System.out.println("array1 == array2: " + isEqual1); // Вывод: array1 == array2: true
+           System.out.println("array1 == array3: " + isEqual2); // Вывод: array1 == array3: false
+       }
+   }
+   
+
+4. compare(...)
+
+   Описание: В классе Arrays метод compare используется для сравнения двух массивов лексикографически. Однако начиная с Java 9, появились специфичные методы для разных типов, например, compare(int[] a, int[] b).
+
+   Пример:
+   
+   import java.util.Arrays;
+
+   public class CompareExample {
+       public static void main(String[] args) {
+           int[] array1 = {1, 2, 3};
+           int[] array2 = {1, 2, 4};
+           int[] array3 = {1, 2, 3};
+
+           int result1 = Arrays.compare(array1, array2);
+           int result2 = Arrays.compare(array1, array3);
+
+           System.out.println("Сравнение array1 и array2: " + result1); // Вывод: -1 (array1 меньше array2)
+           System.out.println("Сравнение array1 и array3: " + result2); // Вывод: 0 (array1 равно array3)
+       }
+   }
+   
+
+5. sort(...)
+
+   Описание: Сортирует массив по возрастанию.
+
+   Пример:
+
+   import java.util.Arrays;
+
+   public class SortExample {
+       public static void main(String[] args) {
+           int[] numbers = {5, 2, 8, 3, 1};
+           Arrays.sort(numbers);
+           System.out.println(Arrays.toString(numbers)); // Вывод: [1, 2, 3, 5, 8]
+       }
+   }
+   
