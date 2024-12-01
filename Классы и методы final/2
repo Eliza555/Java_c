@@ -1,0 +1,31 @@
+Практика #2: Наследование от final класса
+
+В этом примере мы создадим final класс FinalClass. Попытка создать подкласс SubClass, наследующий от FinalClass, приведет к ошибке компиляции.
+
+// Final класс
+final class FinalClass {
+    public void display() {
+        System.out.println("Это final класс FinalClass");
+    }
+}
+
+// Подкласс, пытающийся наследоваться от Final класса
+class SubClass extends FinalClass { // Ошибка!
+    // Дополнительные методы или поля
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SubClass sub = new SubClass();
+        sub.display();
+    }
+}
+
+
+Ошибка компиляции:
+
+error: cannot inherit from final FinalClass
+class SubClass extends FinalClass {
+                  ^
+Пояснение:
+Ключевое слово final перед объявлением класса FinalClass запрещает создание подклассов от него. Попытка наследования в классе SubClass приводит к ошибке компиляции.
