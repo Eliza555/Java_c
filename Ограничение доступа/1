@@ -1,0 +1,144 @@
+В языке Java существуют четыре уровня доступа (спецификаторов доступа) для классов, методов и переменных:
+
+1. public: Доступ открыт для всех классов из любых пакетов.
+2. protected: Доступен внутри того же пакета и для подклассов в других пакетах.
+3. Без спецификатора (package-private): Доступен только внутри того же пакета.
+4. private: Доступен только внутри самого класса.
+
+Ниже приведен пример программы, демонстрирующий использование каждого из этих спецификаторов доступа.
+
+Структура проекта
+
+Предположим, у нас есть два пакета:
+- package1 
+- package2
+
+В package1 находится класс ClassA с разными спецификаторами доступа и класс ClassB, который пытается обращаться к членам ClassA.
+
+В package2 находится класс ClassC, который также пытается обращаться к членам ClassA.
+
+Код программы
+
+package1/ClassA.java
+
+package package1;
+
+public class ClassA {
+    public String publicField = "public";
+    protected String protectedField = "protected";
+    String defaultField = "default"; // package-private
+    private String privateField = "private";
+
+    public void publicMethod() {
+        System.out.println("Public Method");
+    }
+
+    protected void protectedMethod() {
+        System.out.println("Protected Method");
+    }
+
+    void defaultMethod() { // package-private
+        System.out.println("Default Method");
+    }
+
+    private void privateMethod() {
+        System.out.println("Private Method");
+    }
+}
+
+
+package1/ClassB.java
+
+package package1;
+
+public class ClassB {
+    public void accessClassA() {
+        ClassA obj = new ClassA();
+        
+        // Доступ к public-члену
+        System.out.println("Public Field: " + obj.publicField);
+        obj.publicMethod();
+        
+        // Доступ к protected-члену
+        System.out.println("Protected Field: " + obj.protectedField);
+        obj.protectedMethod();
+        
+        // Доступ к package-private (default) члену
+        System.out.println("Default Field: " + obj.defaultField);
+        obj.defaultMethod();
+        
+        // Доступ к private-члену (невозможно)
+        // System.out.println("Private Field: " + obj.privateField); // Ошибка компиляции
+        // obj.privateMethod(); // Ошибка компиляции
+    }
+}
+
+
+package2/ClassC.java
+
+package package2;
+
+import package1.ClassA;
+
+public class ClassC extends ClassA {
+    public void accessClassA() {
+        ClassA obj = new ClassA();
+        
+        // Доступ к public-члену
+        System.out.println("Public Field: " + obj.publicField);
+        obj.publicMethod();
+        
+        // Доступ к protected-члену
+        // Если ClassC наследуется от ClassA, можно получить доступ к protected-членам через наследование
+        System.out.println("Protected Field: " + this.protectedField);
+        this.protectedMethod();
+        
+        // Доступ к package-private (default) члену (невозможно, другой пакет)
+        // System.out.println("Default Field: " + obj.defaultField); // Ошибка компиляции
+        // obj.defaultMethod(); // Ошибка компиляции
+        
+        // Доступ к private-члену (невозможно)
+        // System.out.println("Private Field: " + obj.privateField); // Ошибка компиляции
+        // obj.privateMethod(); // Ошибка компиляции
+    }
+}
+
+
+Main.java
+
+import package1.ClassB;
+import package2.ClassC;
+
+public class Main {
+    public static void main(String[] args) {
+        ClassB classB = new ClassB();
+        classB.accessClassA();
+        
+        ClassC classC = new ClassC();
+        classC.accessClassA();
+    }
+}
+
+
+### Пояснения
+
+1. public:
+   - Доступен во всех классах: В ClassB и ClassC можно обращаться к publicField и вызывать publicMethod() класса ClassA.
+
+2. protected:
+   - Внутри того же пакета: В ClassB (тот же пакет package1) можно обращаться к protectedField и вызывать protectedMethod().
+   - В другом пакете через наследование: В ClassC (другой пакет package2), который нас
+ледуется от ClassA, можно обращаться к protectedField и вызывать protectedMethod() через this.
+
+3. Без спецификатора (package-private):
+   - Доступен только внутри того же пакета: В ClassB можно обращаться к defaultField и вызывать defaultMethod(), так как он находится в том же пакете package1.
+   - В другом пакете недоступен: В ClassC попытки доступа к defaultField и вызова defaultMethod() приведут к ошибкам компиляции, поэтому эти строки закомментированы.
+
+4. private:
+   - Доступен только внутри класса: Ни в ClassB, ни в ClassC нельзя обращаться к privateField или вызывать privateMethod() класса ClassA. 
+   Попытки доступа приведут к ошибкам компиляции, поэтому эти строки закомментированы.
+
+Вывод
+
+Этот пример демонстрирует, как различные спецификаторы доступа влияют на доступность членов класса из других классов и пакетов. 
+Использование правильных уровней доступа важно для инкапсуляции и обеспечения безопасности данных в приложении.
