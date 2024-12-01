@@ -1,0 +1,24 @@
+Случаи выбрасывания `NullPointerException` при автоупаковке/автораспаковке
+
+`NullPointerException` может быть выброшено при автораспаковке (`unboxing`) объекта-оболочки, если этот объект имеет значение `null`. 
+При автоупаковке (`boxing`) `null` не вызывает исключения, но при попытке распаковать его обратно в примитивный тип возникает ошибка.
+
+Пример:
+public class NullPointerExceptionExample {
+    public static void main(String[] args) {
+        Integer nullableInteger = null;
+
+        // Попытка автораспаковки null значения
+        try {
+            int primitiveInt = nullableInteger; // Брошено NullPointerException
+        } catch (NullPointerException e) {
+            System.out.println("Возникло исключение: " + e);
+        }
+    }
+}
+
+Вывод
+Возникло исключение: java.lang.NullPointerException
+
+В данном примере переменная `nullableInteger` имеет значение `null`. 
+При попытке присвоить её значение примитивной переменной `primitiveInt` происходит автораспаковка, что приводит к выбросу `NullPointerException`.
