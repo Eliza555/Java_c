@@ -1,0 +1,25 @@
+Способы создания экземпляра класса `Boolean`
+
+Класс `Boolean` предоставляет несколько способов создания его экземпляров:
+
+1. Использование конструктора с аргументом `boolean`:
+   Boolean bool1 = new Boolean(true);
+
+2. Использование конструктора с аргументом `String`:
+   Boolean bool2 = new Boolean("true");
+   Boolean bool3 = new Boolean("TrUe"); // Регистр не важен
+   Boolean bool4 = new Boolean("false");
+   Boolean bool5 = new Boolean("random"); // Любая строка, кроме "true" (игнорируя регистр), интерпретируется как false
+
+3. Использование статического метода `Boolean.valueOf(boolean)`:
+   Boolean bool6 = Boolean.valueOf(true);
+
+4. Использование статического метода `Boolean.valueOf(String)`
+   Boolean bool7 = Boolean.valueOf("true");
+   Boolean bool8 = Boolean.valueOf("TRUE"); // Регистр не важен
+   Boolean bool9 = Boolean.valueOf("false");
+   Boolean bool10 = Boolean.valueOf("anything else"); // Любая строка, кроме "true" (игнорируя регистр), возвращает Boolean.FALSE
+
+5. Использование автопреобразования (Autoboxing):
+   Boolean bool11 = true; // Автоматически преобразуется в Boolean.valueOf(true)
+   Boolean bool12 = false; // Автоматически преобразуется в Boolean.valueOf(false)
