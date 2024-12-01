@@ -1,0 +1,115 @@
+Какого типа может быть переменная в switch? Приведите примеры для всех возможных случаев.
+Типы переменных, которые можно использовать в конструкции `switch` в Java, и примеры для каждого случая:
+В Java переменная, используемая в `switch`, может быть следующих типов:
+1. byte
+2. short
+3. char
+4. int
+5. String (начиная с Java 7)
+6. Перечисления (enum)
+7. Character, Byte, Short, Integer(автоупаковка позволяет использовать обертки некоторых примитивных типов)
+
+Примеры для каждого типа:
+
+1. byte`
+    byte b = 2;
+    switch (b) {
+        case 1:
+            System.out.println("Byte value 1");
+            break;
+        case 2:
+            System.out.println("Byte value 2");
+            break;
+        default:
+            System.out.println("Default byte value");
+    }
+   
+2. short
+    short s = 3;
+    switch (s) {
+        case 1:
+            System.out.println("Short value 1");
+            break;
+        case 3:
+            System.out.println("Short value 3");
+            break;
+        default:
+            System.out.println("Default short value");
+    }
+
+3. char
+    char c = 'A';
+    switch (c) {
+        case 'A':
+            System.out.println("Character is A");
+            break;
+        case 'B':
+            System.out.println("Character is B");
+            break;
+        default:
+            System.out.println("Default character");
+    }
+
+4. int
+    int number = 10;
+    switch (number) {
+        case 5:
+            System.out.println("Number is 5");
+            break;
+        case 10:
+            System.out.println("Number is 10");
+            break;
+        default:
+            System.out.println("Default number");
+    }
+
+5. String
+
+    String fruit = "Apple";
+    switch (fruit) {
+        case "Apple":
+            System.out.println("It's an Apple");
+            break;
+        case "Banana":
+            System.out.println("It's a Banana");
+            break;
+        default:
+            System.out.println("Unknown fruit");
+    }
+
+6. Перечисления (enum)
+    enum Day {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
+
+    Day today = Day.MONDAY;
+    switch (today) {
+        case MONDAY:
+            System.out.println("Start of the work week");
+            break;
+        case FRIDAY:
+            System.out.println("End of the work week");
+            break;
+        default:
+            System.out.println("Midweek days");
+    }
+
+7. Обертки (`Character`, `Byte`, `Short`, `Integer`)
+    Integer num = 1;
+    switch (num) {
+        case 1:
+            System.out.println("Integer is 1");
+            break;
+        case 2:
+            System.out.println("Integer is 2");
+            break;
+        default:
+            System.out.println("Default integer");
+    }
+
+Примечания:
+
+- Автоупаковка/распаковка: Начиная с Java 5, примитивные типы могут автоматически преобразовываться в их соответствующие обертки (`int` ↔ `Integer`, `char` ↔ `Character` и т.д.), 
+что позволяет использовать обертки в `switch`.
+
+- Ограничения: Нельзя использовать типы `long`, `float`, `double`, `boolean`, и другие нестандартые типы напрямую в `switch`.
