@@ -1,1 +1,25 @@
+Примеры использования метода `decode()`
+Метод `decode()` класса `Integer` преобразует строку, представляющую число, в объект `Integer`. 
+Он поддерживает различные системы счисления и распознает префиксы для определения системы счисления автоматически.
 
+Примеры использования:
+
+1. Десятичное число:
+   String decimalStr = "123";
+   Integer decimal = Integer.decode(decimalStr);
+   System.out.println(decimal); // Вывод: 123
+
+2. Шестнадцатеричное число с префиксом `0x`:
+   String hexStr = "0x7B";
+   Integer hex = Integer.decode(hexStr);
+   System.out.println(hex); // Вывод: 123
+
+3. Шестнадцатеричное число с префиксом `#`:
+   String hexHashStr = "#7B";
+   Integer hexHash = Integer.decode(hexHashStr);
+   System.out.println(hexHash); // Вывод: 123
+
+4. Восьмеричное число с префиксом `0`:
+   String octalStr = "0173";
+   Integer octal = Integer.decode(octalStr);
+   System.out.println(octal); // Вывод: 123
