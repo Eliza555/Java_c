@@ -1,0 +1,74 @@
+Пример класса, в котором используется инициализация элементов перечисления (enum):
+
+В этом примере мы создадим класс Car, который использует перечисление Color для инициализации цвета автомобиля.
+
+// Перечисление цветов
+enum Color {
+    RED,
+    BLUE,
+    GREEN,
+    BLACK,
+    WHITE
+}
+
+// Класс Car, использующий перечисление Color
+public class Car {
+    private String model;
+    private Color color;
+    private int year;
+
+    // Конструктор класса Car
+    public Car(String model, Color color, int year) {
+        this.model = model;
+        this.color = color;
+        this.year = year;
+    }
+
+    // Геттеры и сеттеры
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+    
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    // Метод для отображения информации об автомобиле
+    public void displayInfo() {
+        System.out.println("Модель: " + model + ", Цвет: " + color + ", Год: " + year);
+    }
+
+    // Главный метод для демонстрации
+    public static void main(String[] args) {
+        Car car1 = new Car("Toyota Camry", Color.RED, 2020);
+        Car car2 = new Car("Honda Civic", Color.BLUE, 2019);
+
+        car1.displayInfo(); // Вывод: Модель: Toyota Camry, Цвет: RED, Год: 2020
+        car2.displayInfo(); // Вывод: Модель: Honda Civic, Цвет: BLUE, Год: 2019
+    }
+}
+
+
+Объяснение:
+
+- Перечисление Color определяет возможные цвета автомобиля.
+- Класс Car имеет поля model (модель), color (цвет) и year (год выпуска).
+- В конструкторе класса Car инициализируются эти поля, включая color с использованием перечисления Color.
+- Метод displayInfo() выводит информацию об автомобиле.
+- В main методе создаются объекты Car с использованием различных значений перечисления Color.
