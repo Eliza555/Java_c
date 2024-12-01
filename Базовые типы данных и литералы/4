@@ -1,0 +1,26 @@
+//Приведите пример использования перегруженного оператора + с объектами типа String и переменными принадлежащим другим типам (объектам и базовым типам).
+public class Main {
+    public static void main(String[] args) {
+        String str = "Привет, ";
+        int number = 2024;
+        double decimal = 99.99;
+        char letter = 'A';
+        Object obj = new Object();
+
+        // Конкатенация String с int
+        String result1 = str + number;
+        System.out.println(result1); // Выведет: Привет, 2024
+
+        // Конкатенация String с double
+        String result2 = str + decimal;
+        System.out.println(result2); // Выведет: Привет, 99.99
+
+        // Конкатенация String с char
+        String result3 = str + letter;
+        System.out.println(result3); // Выведет: Привет, A
+
+        // Конкатенация String с объектом
+        String result4 = str + obj;
+        System.out.println(result4); // Выведет: Привет, java.lang.Object@<hashcode>
+    }
+}
