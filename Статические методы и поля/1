@@ -1,0 +1,37 @@
+Практика #1: Варианты вызова метода `printVars()`
+
+1. *Через имя класса:*
+   
+   A.printVars();
+
+
+2. *Через экземпляр класса:*
+
+   A aInstance = new A();
+   aInstance.printVars();
+
+3. *Внутри самого класса `A:*
+
+   printVars();
+   
+
+4. Через подкласс:
+   B.printVars();
+   
+
+5. Через переменную типа суперкласса, ссылающуюся на подкласс:
+   A obj = new B();
+   obj.printVars();
+   
+
+6. Через `static import`:
+   import static A.printVars;
+   // ...
+   printVars();
+   
+
+7. Через рефлексию:
+
+   Method method = A.class.getMethod("printVars");
+   method.invoke(null);
+  
