@@ -1,0 +1,37 @@
+Практика #1: Переопределение final метода суперкласса
+
+В этом примере мы создадим суперкласс Parent с final методом finalMethod. Попытка переопределить этот метод в подклассе Child приведет к ошибке компиляции.
+
+// Суперкласс с final методом
+class Parent {
+    public final void finalMethod() {
+        System.out.println("Это final метод в классе Parent");
+    }
+}
+
+// Подкласс, пытающийся переопределить final метод
+class Child extends Parent {
+    // Попытка переопределения final метода приведет к ошибке компиляции
+    @Override
+    public void finalMethod() { // Ошибка!
+        System.out.println("Переопределенный метод в классе Child");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child child = new Child();
+        child.finalMethod();
+    }
+}
+
+
+Ошибка компиляции:
+
+error: finalMethod() in Child cannot override finalMethod() in Parent
+    public void finalMethod() {
+                ^
+  overridden method is final
+
+Пояснение:
+Ключевое слово final в методе finalMethod класса Parent запрещает его переопределение в любых подклассах. Попытка сделать это в классе Child вызывает ошибку компиляции.
