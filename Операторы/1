@@ -1,0 +1,120 @@
+Примеры использования операторов с операндами базовых типов и типа `String`.
+
+Рассмотрим основные операторы в Java:
+
+1. **Арифметические операторы**: `+`, `-`, `*`, `/`, `%`
+2. **Операторы инкремента и декремента**: `++`, `--`
+3. **Операторы сравнения**: `==`, `!=`, `>`, `<`, `>=`, `<=`
+4. **Логические операторы**: `&&`, `||`, `!`
+5. **Оператор присваивания**: `=`
+
+Примеры с базовыми типами:
+
+public class OperatorsExample {
+    public static void main(String[] args) {
+        // Арифметические операторы
+        int a = 10, b = 5;
+        int sum = a + b;          // 15
+        int difference = a - b;   // 5
+        int product = a * b;      // 50
+        int quotient = a / b;     // 2
+        int remainder = a % b;    // 0
+
+        // Операторы инкремента и декремента
+        int c = 5;
+        int prefixInc = ++c;      // c = 6, prefixInc = 6
+        int postfixInc = c++;     // postfixInc = 6, c = 7
+        int prefixDec = --c;      // c = 6, prefixDec = 6
+        int postfixDec = c--;     // postfixDec = 6, c = 5
+
+        // Операторы сравнения
+        boolean isEqual = (a == b);      // false
+        boolean isNotEqual = (a != b);   // true
+        boolean isGreater = (a > b);     // true
+        boolean isLess = (a < b);        // false
+        boolean isGreaterOrEqual = (a >= b); // true
+        boolean isLessOrEqual = (a <= b);    // false
+
+        // Логические операторы
+        boolean andResult = (a > b) && (c < a); // true && false -> false
+        boolean orResult = (a > b) || (c < a);  // true || false -> true
+        boolean notResult = !(a > b);           // !true -> false
+
+        // Вывод результатов
+        System.out.println("Сумма: " + sum);
+        System.out.println("Разность: " + difference);
+        System.out.println("Произведение: " + product);
+        System.out.println("Частное: " + quotient);
+        System.out.println("Остаток: " + remainder);
+        System.out.println("Префиксный инкремент: " + prefixInc);
+        System.out.println("Постфиксный инкремент: " + postfixInc);
+        System.out.println("Префиксный декремент: " + prefixDec);
+        System.out.println("Постфиксный декремент: " + postfixDec);
+        System.out.println("Равно: " + isEqual);
+        System.out.println("Не равно: " + isNotEqual);
+        System.out.println("Больше: " + isGreater);
+        System.out.println("Меньше: " + isLess);
+        System.out.println("Больше или равно: " + isGreaterOrEqual);
+        System.out.println("Меньше или равно: " + isLessOrEqual);
+        System.out.println("Логическое И: " + andResult);
+        System.out.println("Логическое ИЛИ: " + orResult);
+        System.out.println("Логическое НЕ: " + notResult);
+    }
+}
+
+Примеры с типом `String`:
+Некоторые операторы, такие как арифметические и инкремент/декремент, не применимы к типу `String`. 
+Однако оператор `+` используется для конкатенации строк, а операторы сравнения можно применять с объектами `String`, но следует использовать метод `equals` для сравнения содержимого строк.
+
+public class StringOperatorsExample {
+    public static void main(String[] args) {
+        // Конкатенация строк с помощью оператора +
+        String str1 = "Hello, ";
+        String str2 = "World!";
+        String greeting = str1 + str2; // "Hello, World!"
+
+        // Попытка использования арифметических операторов с String вызовет ошибку
+        // String invalid = str1 - str2; // Ошибка компиляции
+
+        // Сравнение строк с помощью операторов сравнения (проверка ссылок)
+        boolean isSameReference = (str1 == str2);      // false
+        boolean isDifferentReference = (str1 != str2); // true
+
+        // Правильное сравнение содержимого строк с помощью equals
+        boolean isEqualContents = str1.equals(str2);   // false
+
+        // Вывод результатов
+        System.out.println("Конкатенация: " + greeting);
+        System.out.println("Сравнение ссылок (==): " + isSameReference);
+        System.out.println("Сравнени
+е ссылок (!=): " + isDifferentReference);
+        System.out.println("Сравнение содержимого (equals): " + isEqualContents);
+    }
+}
+
+Примеры использования операторов `++` и `--` в префиксной и постфиксной формах:
+
+public class IncrementDecrementExample {
+    public static void main(String[] args) {
+        int x = 10;
+
+        // Префиксный инкремент
+        int preInc = ++x; // x становится 11, preInc = 11
+
+        // Постфиксный инкремент
+        int postInc = x++; // postInc = 11, x становится 12
+
+        // Префиксный декремент
+        int preDec = --x; // x становится 11, preDec = 11
+
+        // Постфиксный декремент
+        int postDec = x--; // postDec = 11, x становится 10
+
+        // Вывод результатов
+        System.out.println("Префиксный инкремент: " + preInc);
+        System.out.println("Постфиксный инкремент: " + postInc);
+        System.out.println("Префиксный декремент: " + preDec);
+        System.out.println("Постфиксный декремент: " + postDec);
+        System.out.println("Текущие значение x: " + x);
+    }
+}
