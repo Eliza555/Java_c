@@ -1,0 +1,30 @@
+Практика #2
+
+Зачем нужен метод flush()?
+
+Метод flush() используется для принудительной отправки всех накопленных данных из буфера в целевой поток. 
+В контексте вывода данных (например, при использовании BufferedWriter, PrintWriter или других потоков вывода), данные могут накапливаться в буфере для повышения производительности.
+Однако иногда необходимо убедиться, что все данные действительно записаны или отправлены, например, перед завершением программы или при ожидании важных данных.
+
+Пример использования flush():
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FlushExample {
+    public static void main(String[] args) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"))) {
+            writer.write("Первая строка.n");
+            writer.flush(); // Принудительно записать данные в файл
+
+            // Выполняются другие операции
+            writer.write("Вторая строка.n");
+            // Авто-flush произойдет при закрытии потока
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+В этом примере после записи первой строки вызывается flush(), чтобы убедиться, что она немедленно записана в файл output.txt.
