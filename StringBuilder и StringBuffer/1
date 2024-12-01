@@ -1,0 +1,92 @@
+Практика #1
+
+Ниже представлен пример программы на Java, демонстрирующей функциональность десяти методов классов `StringBuilder` и `StringBuffer`. В комментариях пояснены используемые методы.
+
+public class StringBuilderStringBufferDemo {
+    public static void main(String[] args) {
+        // Использование StringBuilder
+        StringBuilder sb = new StringBuilder("Hello");
+
+        // Метод append() - добавляет указанную строку в конец
+        sb.append(" World");
+        System.out.println("После append: " + sb); // Вывод: Hello World
+
+        // Метод insert() - вставляет строку на указанную позицию
+        sb.insert(5, ",");
+        System.out.println("После insert: " + sb); // Вывод: Hello, World
+
+        // Метод delete() - удаляет символы с начальной до конечной позиции
+        sb.delete(5, 6);
+        System.out.println("После delete: " + sb); // Вывод: Hello World
+
+        // Метод reverse() - разворачивает строку задом наперед
+        sb.reverse();
+        System.out.println("После reverse: " + sb); // Вывод: dlroW olleH
+
+        // Метод replace() - заменяет часть строки на другую строку
+        sb.replace(0, 5, "HELLO");
+        System.out.println("После replace: " + sb); // Вывод: HELLO olleH
+
+        // Метод capacity() - возвращает текущую емкость буфера
+        System.out.println("Емкость StringBuilder: " + sb.capacity()); // Вывод емкости
+
+        // Метод indexOf() - возвращает индекс первого вхождения подстроки
+        int index = sb.indexOf("olleH");
+        System.out.println("Индекс 'olleH': " + index); // Вывод: индекс подстроки
+
+        // Метод substring() - возвращает подстроку от начального до конечного индекса
+        String sub = sb.substring(0, 5);
+        System.out.println("Подстрока: " + sub); // Вывод: HELLO
+
+        // Метод toString() - преобразует StringBuilder в строку
+        String str = sb.toString();
+        System.out.println("После toString: " + str); // Вывод как String
+
+        // Метод setLength() - устанавливает длину строки
+        sb.setLength(5);
+        System.out.println("После setLength: " + sb); // Вывод: HELLO
+
+        // Использование StringBuffer
+        StringBuffer sbf = new StringBuffer("Good");
+
+        // Метод append() - добавляет указанную строку в конец
+        sbf.append(" Morning");
+        System.out.println("StringBuffer после append: " + sbf); // Вывод: Good Morning
+
+        // Метод ensureCapacity() - обеспечивает минимальную емкость буфера
+        sbf.ensureCapacity(50);
+        System.out.println("Емкость StringBuffer после ensureCapacity: " + sbf.capacity());
+
+        // Метод charAt() - возвращает символ в указанной позиции
+        char ch = sbf.charAt(5);
+        System.out.println("Символ на позиции 5: " + ch); // Вывод: 'M'
+
+        // Метод setCharAt() - устанавливает символ в указанной позиции
+        sbf.setCharAt(5, 'E');
+        System.out.println("После setCharAt: " + sbf); // Вывод: Good Eorning
+
+        // Метод deleteCharAt() - удаляет символ в указанной позиции
+        sbf.deleteCharAt(5);
+        System.out.println("После deleteCharAt: " + sbf); // Вывод: Good Eorning
+
+        // Метод indexOf() - возвращает индекс первого вхождения подстроки
+        int sbfIndex = sbf.indexOf("Morning");
+        System.out.println("Индекс 'Morning' в StringBuffer: " + sbfIndex); // Вывод: индекс подстроки
+    }
+}
+Пояснения к использованным методам:
+
+1. **append(String str)**: Добавляет строку `str` в конец текущего объекта `StringBuilder` или `StringBuffer`.
+2. **insert(int offset, String str)**: Вставляет строку `str` в текущий объект на позицию `offset`.
+3. **delete(int start, int end)**: Удаляет символы с индекса `start` до `end` (не включая `end`).
+4. **reverse()**: Разворачивает строку задом наперед.
+5. **replace(int start, int end, String str)**: Заменяет символы с `start` до `end` на строку `str`.
+6. **capacity()**: Возвращает текущую емкость буфера.
+7. **indexOf(String str)**: Возвращает индекс первого вхождения подстроки `str`.
+8. **substring(int start, int end)**: Возвращает подстроку с позиции `start` до `end` (не включая `end`).
+9. **toString()**: Преобразует `StringBuilder` или `StringBuffer` в объект `String`.
+10. **setLength(int newLength)**: Устанавливает новую длину строки. Если новая длина меньше текущей, строка обрезается.
+11. **ensureCapacity(int minimumCapacity)**: Увеличивает емкость буфера до минимум `minimumCapacity`, если текущая емкость меньше.
+12. **charAt(int index)**: Возвращает символ на позиции `index`.
+13. **setCharAt(int index, char ch)**: Устанавливает символ `ch` на позицию `index`.
+14. **deleteCharAt(int index)**: Удаляет символ на позиции `index`.
