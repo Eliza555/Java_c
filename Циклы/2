@@ -1,0 +1,57 @@
+Практика #2
+Пример использования операторов break и continue с циклом for.
+
+public class BreakContinueExample {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            if (i == 5) {
+                break; // Прерывает цикл, когда i равно 5
+            }
+            
+            if (i % 2 == 0) {
+                continue; // Пропускает текущую итерацию, если i чётное
+            }
+            
+            System.out.println("Нечётное число: " + i);
+        }
+        
+        System.out.println("Цикл завершен.");
+    }
+}
+
+Результат выполнения программы:
+
+Нечётное число: 1
+Нечётное число: 3
+Цикл завершен.
+
+
+Аналогично можно использовать break и continue с конструкциями while и do-while. Ниже приведён пример с циклом while.
+
+Пример с циклом while:
+public class WhileBreakContinueExample {
+    public static void main(String[] args) {
+        int i = 1;
+        while (i <= 10) {
+            if (i == 5) {
+                break; // Прерывает цикл, когда i равно 5
+            }
+            
+            if (i % 2 == 0) {
+                i++;
+                continue; // Пропускает текущую итерацию, если i чётное
+            }
+            
+            System.out.println("Нечётное число: " + i);
+            i++;
+        }
+        
+        System.out.println("Цикл завершен.");
+    }
+}
+
+Результат выполнения программы:
+
+Нечётное число: 1
+Нечётное число: 3
+Цикл завершен.
