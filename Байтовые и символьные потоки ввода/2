@@ -1,0 +1,65 @@
+Практика #2
+Приведите пример использования одного из подклассов класса OutputStream для демонстрации работы метода write(int).
+
+Ответ:
+
+Одним из распространённых подклассов OutputStream является FileOutputStream, который позволяет записывать байты в файл. Рассмотрим пример использования FileOutputStream для записи данных в файл с помощью метода write(int).
+
+Пример использования FileOutputStream и метода write(int):
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+public class OutputStreamExample {
+    public static void main(String[] args) {
+        String filePath = "output.txt"; // Путь к файлу
+
+        try (OutputStream outputStream = new FileOutputStream(filePath)) {
+            String data = "Hello, World!";
+            byte[] dataBytes = data.getBytes();
+
+            // Записываем каждый байт из массива
+            for (byte b : dataBytes) {
+                outputStream.write(b);
+            }
+
+            // Альтернативный способ: записать весь массив сразу
+            // outputStream.write(dataBytes);
+
+            System.out.println("Данные успешно записаны в файл.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+Пояснение:
+
+1. Создание FileOutputStream:
+
+   OutputStream outputStream = new FileOutputStream(filePath);
+   
+   - Открывает (или создаёт) файл для записи. Если файл уже существует, он будет перезаписан.
+
+2. Запись данных методом write(int):
+
+   for (byte b : dataBytes) {
+       outputStream.write(b);
+   }
+   
+   - Метод write(int) записывает один байт в выходной поток. В данном п
+римере мы записываем каждый байт строки по отдельности.
+   - Альтернативно можно записать весь массив байтов одним вызовом write(byte[]).
+
+3. Использование try-with-resources:
+
+   try (OutputStream outputStream = new FileOutputStream(filePath)) {
+       // Запись данных
+   } catch (IOException e) {
+       e.printStackTrace();
+   }
+   
+   - Автоматически закрывает поток после завершения блока try, даже если возникли исключения.
+
