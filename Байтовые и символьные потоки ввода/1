@@ -1,0 +1,57 @@
+Практика #1
+Приведите пример использования одного из подклассов класса InputStream для демонстрации работы метода read().
+
+Ответ:
+Одним из распространённых подклассов InputStream является FileInputStream, который позволяет читать байты из файла. Рассмотрим пример использования FileInputStream для чтения данных из файла с помощью метода read().
+
+Пример использования FileInputStream и метода read():
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class InputStreamExample {
+    public static void main(String[] args) {
+        String filePath = "example.txt"; // Путь к файлу
+
+        try (InputStream inputStream = new FileInputStream(filePath)) {
+            int byteData;
+            // Читаем файл байт за байтом до конца файла
+            while ((byteData = inputStream.read()) != -1) {
+                // Преобразуем байт в символ и выводим
+                char character = (char) byteData;
+                System.out.print(character);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+Пояснение:
+
+1. Создание FileInputStream:
+
+   InputStream inputStream = new FileInputStream(filePath);
+   
+   - Открывает файл для чтения. Если файл не существует, будет выброшено исключение FileNotFoundException.
+
+2. Чтение данных методом read():
+
+   while ((byteData = inputStream.read()) != -1) {
+       char character = (char) byteData;
+       System.out.print(character);
+   }
+   
+   - Метод read() возвращает следующий байт из потока данных или -1, если достигнут конец файла.
+   - В данном примере байты преобразуются в символы и выводятся на консоль.
+
+3. Использование try-with-resources:
+   try (InputStream inputStream = new FileInputStream(filePath)) {
+       // Чтение данных
+   } catch (IOException e) {
+       e.printStackTrace();
+   }
+   
+   - Автоматически закрывает поток после завершения блока try, даже если возникли исключения.
