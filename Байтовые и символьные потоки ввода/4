@@ -1,0 +1,101 @@
+Практика #4
+Зачем нужен интерфейс AutoCloseable? Приведите пример.
+
+Ответ:
+
+Интерфейс AutoCloseable был введён в Java 7 и предназначен для объектов, которые требуют освобождения ресурсов после их использования (например, файл
+овые потоки, сетевые подключения, базы данных). AutoCloseable позволяет объектам автоматически закрываться при выходе из блока try с использованием конструкции try-with-resources, что обеспечивает корректное освобождение ресурсов даже в случае возникновения исключений.
+
+Преимущества использования AutoCloseable:
+
+1. Автоматическое управление ресурсами:
+   - Обеспечивает автоматическое вызов метода close() после завершения блока try, устраняя необходимость явно вызывать close() в блоке finally.
+
+2. Упрощение кода:
+   - Снижает вероятность утечек ресурсов, так как гарантирует вызов close() независимо от того, произошло ли исключение.
+
+3. Повышение читаемости и поддерживаемости:
+   - Код становится компактнее и легче для понимания.
+
+Пример использования AutoCloseable с try-with-resources:
+
+Рассмотрим пример использования FileInputStream, который реализует интерфейс AutoCloseable.
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class AutoCloseableExample {
+    public static void main(String[] args) {
+        String filePath = "example.txt";
+
+        // Использование try-with-resources для автоматического закрытия ресурса
+        try (InputStream inputStream = new FileInputStream(filePath)) {
+            int data;
+            while ((data = inputStream.read()) != -1) {
+                System.out.print((char) data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Дополнительный код после блока try
+        System.out.println("nЧтение файла завершено.");
+    }
+}
+
+
+Пояснение:
+
+1. Блок try-with-resources:
+   try (InputStream inputStream = new FileInputStream(filePath)) {
+       // Работа с потоком
+   } catch (IOException e) {
+       e.printStackTrace();
+   }
+   
+   - Ресурс inputStream автоматически закрывается после завершения блока try, независимо от того, возникло исключение или нет.
+
+2. Преобразование байтов в символы:
+
+   while ((data = inputStream.read()) != -1) {
+       System.out.print((char) data);
+   }
+   
+   - Читаем файл байт за байтом и выводим соответствующие символы на консоль.
+
+3. Автоматическое закрытие ресурса:
+   - После выхода из блока try, метод close() вызывается автоматически, освобождая системные ресурсы, связанные с потоком.
+
+Создание собственного класса, реализующего AutoCloseable:
+
+Можно создавать собственные классы, которые требуют освобождения ресурсов, и реализовывать интерфейс AutoCloseable для интеграции с try-with-resources.
+
+Пример:
+
+public class CustomResource implements AutoCloseable {
+    public CustomResource() {
+        System.out.println("Ресурс открыт.");
+    }
+
+    public void useResource() {
+        System.out.println("Ресурс используется.");
+    }
+
+    @Override
+    public void close() {
+        System.out.println("Ресурс закрыт.");
+    }
+
+    public static void main(String[] args) {
+        try (CustomResource resource = new CustomResource()) {
+            resource.useResource();
+        }
+    }
+}
+
+
+Вывод:
+Ресурс открыт.
+Ресурс используется.
+Ресурс закрыт.
