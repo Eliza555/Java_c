@@ -1,0 +1,72 @@
+Практика #2
+
+Ситуация: Класс реализует два интерфейса с одинаковыми неабстрактными (default) методами.
+
+Когда класс реализует два интерфейса, содержащих методы с одинаковой сигнатурой по умолчанию, возникает конфликт. Компилятор требует, чтобы класс явно определил, какой метод использовать, или предоставил собственную реализацию.
+
+Пример:
+// Первый интерфейс с default методом
+public interface InterfaceA {
+    default void commonMethod() {
+        System.out.println("InterfaceA: commonMethod");
+    }
+}
+
+// Второй интерфейс с default методом
+public interface InterfaceB {
+    default void commonMethod() {
+        System.out.println("InterfaceB: commonMethod");
+    }
+}
+
+// Класс, реализующий оба интерфейса
+public class MyClass implements InterfaceA, InterfaceB {
+    // Необходимо переопределить конфликтующий метод
+    @Override
+    public void commonMethod() {
+        // Можно выбрать, какой метод использовать, или предоставить свою реализацию
+        InterfaceA.super.commonMethod(); // Вызов метода из InterfaceA
+        // InterfaceB.super.commonMethod(); // Вызов метода из InterfaceB
+        // Или собственная реализация:
+        // System.out.println("MyClass: commonMethod");
+    }
+}
+
+
+Пояснение:
+
+1. Переопределение конфликтующего метода:
+   
+   Класс MyClass должен переопределить метод commonMethod, чтобы разрешить конфликт между InterfaceA и InterfaceB.
+
+2. Выбор конкретного интерфейса для вызова метода:
+   
+   Внутри переопредел
+енного метода можно явно указать, какой метод интерфейса вызвать, используя синтаксис Интерфейс.super.Метод().
+
+Использование:
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.commonMethod();
+    }
+}
+
+Вывод:
+InterfaceA: commonMethod
+
+Альтернативное решение:
+
+Если требуется объединить поведение обоих интерфейсов, можно вызвать оба метода внутри переопределенного метода:
+
+@Override
+public void commonMethod() {
+    InterfaceA.super.commonMethod();
+    InterfaceB.super.commonMethod();
+    System.out.println("MyClass: commonMethod");
+}
+
+Вывод:
+InterfaceA: commonMethod
+InterfaceB: commonMethod
+MyClass: commonMethod
