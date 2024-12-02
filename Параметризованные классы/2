@@ -1,0 +1,84 @@
+Практика #2
+Приведите примеры использования конструкций `<? extends T>` и `<? super T>`. Объясните, зачем они нужны?
+
+Wildcard-дженерики (`wildcards`) в Java позволяют создавать более гибкие и обобщенные API, которые могут работать с различными типами данных. `<? extends T>` и `<? super T>` — это примеры *bounded wildcards* (ограниченных подстановочных типов), которые позволяют ограничить типы, с которыми можно работать.
+
+Основные конструкции:
+1. <? extends T> (Upper Bounded Wildcard):
+   - Позволяет использовать тип `T` или любой его подтип (наследник).
+   - Подходит в случаях, когда вы читаете данные из коллекции (covariance — ковариантность).
+   - Ограничение "только для чтения": вы можете получать объекты типа `T`, но не добавлять новые объекты, кроме `null`.
+   
+2. <? super T> (Lower Bounded Wildcard):
+   - Позволяет использовать тип `T` или любой его суперкласс (предок).
+   - Подходит в случаях, когда вы пишете данные в коллекцию (contravariance — контравариантность).
+   - Ограничение "только для записи": вы можете добавлять объекты типа `T`, но при чтении получаете объекты типа `Object`.
+   
+Принцип PECS:
+Producer Extends, Consumer Super — если параметризованный тип выступает как производитель данных (чтение), используйте `extends`. Если выступает как потребитель (запись), используйте `super`.
+
+Пример 1: Использование <? extends T>
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class WildcardExample {
+    public static void printNumbers(List<? extends Number> numbers) {
+        for (Number num : numbers) {
+            System.out.println(num);
+        }
+    }
+
+    public static void main(String[] args) {
+        List<Integer> intList = new ArrayList<>();
+        intList.add(10);
+        intList.add(20);
+
+        List<Double> doubleList = new ArrayList<>();
+        doubleList.add(3.14);
+        doubleList.add(2.718);
+
+        printNumbers(intList);    // Допустимо
+        printNumbers(doubleList); // Допустимо
+
+        // List<Object> objectList = new ArrayList<>();
+        // printNumbers(objectList); // Ошибка компиляции
+    }
+}
+
+Вывод:
+10
+20
+3.14
+2.718
+
+### Пример 2: Использование `<? super T>`
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class WildcardExample {
+    public static void addIntegers(List<? super Integer> list) {
+        for (int i = 1; i <= 5; i++) {
+            list.add(i);
+        }
+    }
+
+    public static void main(String[] args) {
+        List<Integer> intList = new ArrayList<>();
+        addIntegers(intList);
+        System.out.println("intList: " + intList);
+
+        List<Number> numberList = new ArrayList<>();
+        addIntegers(numberList);
+        System.out.println("numberList: " + numberList);
+
+        // List<Object> objectList = new ArrayList<>();
+        // addIntegers(objectList); // Допустимо
+        // System.out.println("objectList: " + objectList);
+    }
+}
+
+Вывод:
+intList: [1, 2, 3, 4, 5]
+numberList: [1, 2, 3, 4, 5]
