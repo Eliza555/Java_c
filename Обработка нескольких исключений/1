@@ -1,0 +1,84 @@
+Практика #1
+
+Часть 1: Обработка нескольких исключений идентичным образом
+
+В этом примере несколько исключений (IOException, SQLException) обрабатываются одинаковым образом с использованием одного блока catch.
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class MultipleExceptionsDemo {
+    public static void main(String[] args) {
+        try {
+            // Генерация IOException
+            methodThatThrowsIOException();
+            
+            // Генерация SQLException
+            methodThatThrowsSQLException();
+        } catch (IOException | SQLException e) {
+            System.out.println("Произошла ошибка: " + e.getMessage());
+            // Дополнительная обработка ошибки при необходимости
+        }
+    }
+
+    public static void methodThatThrowsIOException() throws IOException {
+        // Здесь может быть код, который вызывает IOException
+        throw new IOException("Ошибка ввода-вывода");
+    }
+
+    public static void methodThatThrowsSQLException() throws SQLException {
+        // Здесь может быть код, который вызывает SQLException
+        throw new SQLException("Ошибка SQL");
+    }
+}
+
+
+Часть 2: Исключения, образующие иерархию Ex1 <|-- Ex2 <|-- Ex3
+
+Создадим три пользовательских исключения, где Ex3 наследуется от Ex2, а Ex2 — от Ex1. Затем продемонстрируем их перехват.
+
+// Определение иерархии исключений
+class Ex1 extends Exception {
+    public Ex1(String message) {
+        super(message);
+    }
+}
+
+class Ex2 extends Ex1 {
+    public Ex2(String message) {
+        super(message);
+    }
+}
+
+class Ex3 extends Ex2 {
+    public Ex3(String message) {
+        super(message);
+    }
+}
+
+public class ExceptionHierarchyDemo {
+    public static void main(String[] args) {
+        try {
+            // Генерация исключения Ex3
+            throwEx3();
+        } catch (Ex1 e) {
+            System.out.println("Перехвачено исключение Ex1 или его подкласса: " + e.getMessage());
+        }
+    }
+
+    public static void throwEx3() throws Ex3 {
+        throw new Ex3("Это исключение Ex3");
+    }
+}
+
+
+### Пояснение:
+
+1. Обработка нескольких исключений идентичным образом:
+   - Используя конструкцию catch (IOException | SQLException e), мы можем перехватывать несколько типов исключений в одном блоке catch.
+   - Это позволяет избежать дублирования кода, если обработка различных исключений выполняется одинаково.
+
+2. Иерархия исключений:
+   - Созданы три класса исключений Ex1, Ex2, и Ex3, где Ex2 наследуется от Ex1, а Ex3 — от Ex2.
+   - В методе main мы вызываем метод throwEx3(), который генерирует исключение Ex3.
+   - В блоке catch (Ex1 e) мы перехватываем все исключения, являющиеся экземплярами Ex1 или его подклассов (Ex2, Ex3).
