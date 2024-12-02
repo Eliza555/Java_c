@@ -1,0 +1,56 @@
+Практика #2: Доступ внутреннего класса к полям и методам внешнего класса и влияние спецификаторов доступа
+
+Внутренний класс имеет доступ к полям и методам внешнего класса, независимо от их модификаторов доступа (private, protected, public, пакетный). 
+Это возможно благодаря тому, что внутренний класс имеет тесную связь с экземпляром внешнего класса.
+
+Пример:
+public class OuterClass {
+    private int privateField = 10;
+    int packagePrivateField = 20;
+    protected int protectedField = 30;
+    public int publicField = 40;
+
+    private void privateMethod() {
+        System.out.println("Частный метод внешнего класса");
+    }
+
+    void packagePrivateMethod() {
+        System.out.println("Пакетный метод внешнего класса");
+    }
+
+    protected void protectedMethod() {
+        System.out.println("Защищенный метод внешнего класса");
+    }
+
+    public void publicMethod() {
+        System.out.println("Публичный метод внешнего класса");
+    }
+
+    // Внутренний класс
+    public class InnerClass {
+        public void display() {
+            // Доступ к полям внешнего класса
+            System.out.println("privateField: " + privateField);
+            System.out.println("packagePrivateField: " + packagePrivateField);
+            System.out.println("protectedField: " + protectedField);
+            System.out.println("publicField: " + publicField);
+
+            // Доступ к методам внешнего класса
+            privateMethod();
+            packagePrivateMethod();
+            protectedMethod();
+            publicMethod();
+        }
+    }
+
+    public void createInnerInstance() {
+        InnerClass inner = new InnerClass();
+        inner.display();
+    }
+}
+
+
+Объяснение:
+
+Внутренний класс InnerClass может напрямую обращаться к любым полям и методам внешнего класса OuterClass, в
+не зависимости от их модификаторов доступа. Это связано с тем, что внутренний класс рассматривается как часть внешнего класса и имеет полный доступ к его членам.
