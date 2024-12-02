@@ -1,0 +1,64 @@
+Практика #3: Доступ внешнего класса к полям и методам внутреннего класса и влияние спецификаторов доступа
+
+Внешний класс может получить доступ к полям и методам внутреннего класса, однако доступность зависит от спецификаторов доступа внутреннего класса и его членов.
+
+Пример:
+
+public class OuterClass {
+    
+    // Внутренний класс
+    public class InnerClass {
+        private int privateInnerField = 100;
+        int packagePrivateInnerField = 200;
+        protected int protectedInnerField = 300;
+        public int publicInnerField = 400;
+
+        private void privateInnerMethod() {
+            System.out.println("Частный метод внутреннего класса");
+        }
+
+        void packagePrivateInnerMethod() {
+            System.out.println("Пакетный метод внутреннего класса");
+        }
+
+        protected void protectedInnerMethod() {
+            System.out.println("Защищенный метод внутреннего класса");
+        }
+
+        public void publicInnerMethod() {
+            System.out.println("Публичный метод внутреннего класса");
+        }
+    }
+
+    public void accessInnerClassMembers() {
+        InnerClass inner = new InnerClass();
+
+        // Доступ к полям внутреннего класса
+        // System.out.println(inner.privateInnerField); // Ошибка: private поле
+        System.out.println("packagePrivateInnerField: " + inner.packagePrivateInnerField);
+        System.out.println("protectedInnerField: " + inner.protectedInnerField);
+        System.out.println("publicInnerField: " + inner.publicInnerField);
+
+        // Доступ к методам внутреннего класса
+        // inner.privateInnerMethod(); // Ошибка: private метод
+        inner.packagePrivateInnerMethod();
+        inner.protectedInnerMethod();
+        inner.publicInnerMethod();
+    }
+
+    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        outer.accessInnerClassMembers();
+    }
+}
+
+
+Объяснение:
+
+1. Доступ к внутреннему классу:
+   - Если внутренний класс объявлен как public, он доступен из других классов, имеющих доступ к внешнему классу.
+   - Если внутренний класс объявлен с другими спецификаторами (private, protected, пакетный), его доступность будет ограничена соответственно.
+
+2. Доступ к членам внутреннего класса:
+   - private члены внутреннего класса недоступны вне этого класса, включая внешний класс.
+   - Пакетный доступ, protected и public члены доступны в зависимости от контекста и местоположения внешнего класса.
