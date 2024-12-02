@@ -1,0 +1,95 @@
+Практика #1
+Приведите примеры использования оператора instanceof с объектами параметризованных классов.
+
+Примеры использования instanceof с параметризованными классами:
+
+Пример 1: Проверка базового типа дженерик-класса
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class InstanceOfGenericExample {
+    public static void main(String[] args) {
+        Object obj1 = new ArrayList<String>();
+        Object obj2 = new ArrayList<Integer>();
+        Object obj3 = "Not a list";
+
+        // Проверка, является ли объект экземпляром List
+        if (obj1 instanceof List) {
+            System.out.println("obj1 является экземпляром List");
+        }
+
+        if (obj2 instanceof List<?>) {
+            System.out.println("obj2 является экземпляром List<?>");
+        }
+
+        if (obj3 instanceof List) {
+            System.out.println("obj3 является экземпляром List");
+        } else {
+            System.out.println("obj3 не является экземпляром List");
+        }
+    }
+}
+
+
+Вывод:
+obj1 является экземпляром List
+obj2 является экземпляром List<?>
+obj3 не является экземпляром List
+
+
+#### Пример 2: Использование пользовательского параметризованного класса
+
+Java
+
+
+class Box<T> {
+    private T content;
+
+    public Box(T content) {
+        this.content = content;
+    }
+
+    public T getContent() {
+        return content;
+    }
+}
+
+public class InstanceOfCustomGeneric {
+    public static void main(String[] args) {
+        Object box1 = new Box<String>("Hello");
+        Object box2 = new Box<Integer>(123);
+        Object box3 = new Box<>(45.67);
+
+        // Проверка, является ли объект экземпляром Box
+        if (box1 instanceof Box<?>) {
+            System.out.println("box1 является экземпляром Box<?>");
+            Box<?> b = (Box<?>) box1;
+            System.out.println("Содержимое box1: " + b.getContent());
+        }
+
+        if (box2 instanceof Box<?>) {
+            System.out.println("box2 является экземпляром Box<?>");
+            Box<?> b = (Box<?>) box2;
+            System.out.println("Содержимое box2: " + b.getContent());
+        }
+
+        if (box3 instanceof Box<?>) {
+            System.out.println("box3 является экземпляром Box<?>");
+            Box<?> b = (Box<?>) box3;
+            System.out.println("Содержимое box3: " + b.getContent());
+        }
+    }
+}
+
+
+Вывод:
+box1 является экземпляром Box<?>
+Содержимое box1: Hello
+box2 является экземпляром Box<?>
+Содержимое box2: 123
+box3 является экземпляром Box<?>
+Содержимое box3: 45.67
+
+Заключение:
+Использование `instanceof` с параметризованными классами ограничено из-за стирания типов. Однако вы можете проверить, является ли объект экземпляром базового параметризованного класса, используя `instanceof` с `<?>` или базовым типом без параметров.
