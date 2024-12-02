@@ -1,0 +1,59 @@
+Что произойдет при выполнении данного кода? Поясните.
+
+
+public class App {
+  final static int START_COUNTER;
+  
+  static {
+    START_COUNTER = Integer.parseInt("Y-");
+  }
+  
+  public static void main(String[] args) {
+    System.out.println("Hello");
+  }
+}
+
+Разбор кода
+1. Объявление переменной:
+   final static int START_COUNTER;
+   
+   - Здесь объявляется константа START_COUNTER, которая должна быть инициализирована в момент загрузки класса.
+
+2. Статический блок инициализации:
+   static {
+     START_COUNTER = Integer.parseInt("Y-");
+   }
+   
+   - Этот блок выполняется один раз при загрузке класса App.
+   - Внутри блока происходит попытка преобразовать строку "Y-" в целое число с помощью метода Integer.parseInt.
+
+3. Метод main:
+   public static void main(String[] args) {
+     System.out.println("Hello");
+   }
+   
+   - Этот метод предназначен для вывода строки "Hello" в консоль при успешном выполнении программы.
+
+Что происходит при выполнении
+
+- Загрузка класса: Когда JVM пытается загрузить класс App для выполнения метода main, сначала выполняются все статические блоки инициализации.
+  
+- Инициализация START_COUNTER: В статическом блоке выполняется Integer.parseInt("Y-"). Однако строка "Y-" не является корректным целочисленным значением, поэтому метод Integer.parseInt выбрасывает исключение NumberFormatException.
+
+- Ошибка инициализации: Поскольку исключение возникло в статическом блоке, JVM оборачивает его в ExceptionInInitializerError. Это означает, что инициализация класса завершилась неудачно.
+
+- Прерывание выполнения: Из-за ошибки инициализации JVM не продолжит выполнение метода main. В итоге строка "Hello" не будет выведена на консоль.
+
+Ожидаемый вывод ошибки
+
+При попытке выполнить этот код вы получите следующий стек трейс ошибки:
+
+Exception in thread "main" java.lang.ExceptionInInitializerError
+ Caused by: java.lang.NumberFormatException: For input string: "Y-"
+    at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+    at java.base/java.lang.Integer.parseInt(Integer.java:668)
+    at App.<clinit>(App.java:4)
+
+Итог
+- Программа завершится с ошибкой ExceptionInInitializerError, вызванной некорректным форматом строки "Y-" при попытке её преобразования в целое число.
+- Метод main не будет выполнен, и сообщение "Hello" не появится в консоли.
