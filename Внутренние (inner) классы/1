@@ -1,0 +1,61 @@
+Практика #1: Использование различных спецификаторов доступа для внутренних классов и их поведение
+
+В Java внутренние (вложенные) классы могут иметь различные спецификаторы доступа: public, private, protected и пакетный уровень доступа (без спецификатора). 
+Выбор спецификатора определяет видимость внутреннего класса за пределами внешнего класса.
+
+Примеры:
+
+// Внешний класс
+public class OuterClass {
+
+    // Внутренний класс с публичным доступом
+    public class PublicInnerClass {
+        public void display() {
+            System.out.println("Публичный внутренний класс");
+        }
+    }
+
+    // Внутренний класс с частным доступом
+    private class PrivateInnerClass {
+        public void display() {
+            System.out.println("Частный внутренний класс");
+        }
+    }
+
+    // Внутренний класс с защищенным доступом
+    protected class ProtectedInnerClass {
+        public void display() {
+            System.out.println("Защищенный внутренний класс");
+        }
+    }
+
+    // Внутренний класс с пакетным (default) доступом
+    class PackagePrivateInnerClass {
+        public void display() {
+            System.out.println("Внутренний класс с пакетным доступом");
+        }
+    }
+
+    public void demonstrateAccess() {
+        // Доступ к всем внутренним классам внутри внешнего класса
+        PublicInnerClass publicInner = new PublicInnerClass();
+        publicInner.display();
+
+        PrivateInnerClass privateInner = new PrivateInnerClass();
+        privateInner.display();
+
+        ProtectedInnerClass protectedInner = new ProtectedInnerClass();
+        protectedInner.display();
+
+        PackagePrivateInnerClass packagePrivateInner = new PackagePrivateInnerClass();
+        packagePrivateInner.display();
+    }
+}
+
+
+Поведение спецификаторов доступа:
+
+1. public: Внутренний класс доступен из любого другого класса, который имеет доступ к внешнему классу.
+2. private: Внутренний класс доступен только внутри внешнего класса.
+3. protected: Внутренний класс доступен внутри пакета и в подклассах.
+4. Пакетный уровень доступа (default): Внутренний класс доступен только внутри пакета, в котором он объявлен.
