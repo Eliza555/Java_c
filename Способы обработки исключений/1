@@ -1,0 +1,45 @@
+Ниже приведен пример на Java, где генерируются два исключения. Первое исключение (ArithmeticException) перехватывается блоком try-catch, а второе исключение (NullPointerException) не обрабатывается, 
+что приводит к аварийному завершению программы.
+
+public class ExceptionDemo {
+    public static void main(String[] args) {
+        // Перехваченная ошибка: деление на ноль
+        try {
+            System.out.println("Попытка деления на ноль.");
+            int result = 10 / 0; // Это вызовет ArithmeticException
+            System.out.println("Результат: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Перехвачено исключение: " + e);
+        }
+
+        // Не перехваченное исключение: обращение к null объекту
+        System.out.println("Попытка обращения к null объекту.");
+        String str = null;
+        // Это вызовет NullPointerException и программа завершится аварийно
+        System.out.println(str.length());
+    }
+}
+
+
+### Пояснение:
+
+1. Перехваченное исключение (ArithmeticException):
+    - В блоке try выполняется операция деления числа на ноль (10 / 0), что приводит к выбросу ArithmeticException.
+    - Исключение перехватывается соответствующим блоком catch, где выводится сообщение об ошибке.
+    - Программа продолжает выполнение после блока catch.
+
+2. Не перехваченное исключение (NullPointerException):
+    - После обработки первого исключения, программа пытается вызвать метод length() на объекте str, который установлен в null.
+    - Это приводит к выбросу NullPointerException.
+    - Поскольку это исключение не обрабатывается ни одним try-catch блоком, программа завершается аварийно, и будет выведен стек трейс ошибки.
+
+### Вывод программы:
+
+Попытка деления на ноль.
+Перехвачено исключение: java.lang.ArithmeticException: / by zero
+Попытка обращения к null объекту.
+Exception in thread "main" java.lang.NullPointerException
+    at ExceptionDemo.main(ExceptionDemo.java:16)
+
+
+В результате выполнения видно, что первое исключение было успешно перехвачено, а второе привело к аварийному завершению программы.
